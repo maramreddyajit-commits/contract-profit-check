@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pressure washing quote calculator: price a job for profit</title>
+<meta name="description" content="Free calculator for pressure washing quotes. Check break-even price, your target price and how much a slow job costs you.">
+<link rel="canonical" href="https://maramreddyajit-commits.github.io/contract-profit-check/pressure-washing/">
+<meta property="og:title" content="Pressure washing quote calculator: price a job for profit"><meta property="og:description" content="Free calculator for pressure washing quotes. Check break-even price, your target price and how much a slow job costs you."><meta property="og:type" content="website">
+<link rel="stylesheet" href="../assets/style.css">
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"Pressure washing job profit calculator","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"url":"https://maramreddyajit-commits.github.io/contract-profit-check/pressure-washing/"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why add extra hours?","acceptedAnswer":{"@type":"Answer","text":"Setup, hose runs, protecting plants, rinsing and cleanup are real labor that square-foot rates leave out."}},{"@type":"Question","name":"What about surface type?","acceptedAnswer":{"@type":"Answer","text":"Use a production rate for the surface you are washing. Concrete, wood and siding clean at different speeds; track your own."}},{"@type":"Question","name":"Should I price by area or by hour?","acceptedAnswer":{"@type":"Answer","text":"Whichever you use, run the job here to see if it covers cost and margin. A flat price that ignores hours is the usual way jobs lose money."}}]}]</script>
+</head><body>
+<header class="top"><div class="wrap"><a class="brand" href="../">Job Profit Check</a><span class="tag">Free pricing calculators for service businesses</span></div></header>
+
+<main class="wrap">
+<h1>Pressure washing job profit calculator</h1>
+<p class="sub">Check a quote against your real costs before you send it: labor, chemicals, machine wear, travel and overhead. Nothing you type is sent anywhere.</p>
+<div class="grid">
+<section class="card" aria-label="Inputs">
+  <h2>The job</h2>
+  <div class="row2"><div><label for="sqft">Area to wash (sq ft)</label><input id="sqft" type="number" inputmode="decimal" min="0" step="any" ></div><div><label for="extraHoursPerVisit">Extra hours per job</label><input id="extraHoursPerVisit" type="number" inputmode="decimal" min="0" step="any" ></div></div>
+  <div class="row2"><div><label for="sqftPerHour">Sq ft washed per labor hour</label><input id="sqftPerHour" type="number" inputmode="decimal" min="0" step="any" ></div><div><label for="wage">Labor wage ($/hour)</label><input id="wage" type="number" inputmode="decimal" min="0" step="any" ></div></div>
+  <h2 class="gap">Your costs</h2>
+  <div class="row2"><div><label for="burdenPct">Labor burden (%)</label><input id="burdenPct" type="number" inputmode="decimal" min="0" step="any" ></div><div><label for="suppliesMonthly">Chemicals and supplies per job ($)</label><input id="suppliesMonthly" type="number" inputmode="decimal" min="0" step="any" ></div></div>
+  <div class="row2"><div><label for="equipmentMonthly">Machine wear, fuel, vehicle per job ($)</label><input id="equipmentMonthly" type="number" inputmode="decimal" min="0" step="any" ></div><div><label for="travelPerVisit">Travel cost ($)</label><input id="travelPerVisit" type="number" inputmode="decimal" min="0" step="any" ></div></div>
+  <div class="row2"><div><label for="overheadPct">Overhead (% of revenue)</label><input id="overheadPct" type="number" inputmode="decimal" min="0" step="any" ></div><div><label for="targetMarginPct">Profit margin you need (%)</label><input id="targetMarginPct" type="number" inputmode="decimal" min="0" step="any" ></div></div>
+  <h2 class="gap">The price</h2>
+  <div class="row2"><div><label for="quotedMonthly">Price you'd quote ($/job)</label><input id="quotedMonthly" type="number" inputmode="decimal" min="0" step="any" ></div><div></div></div>
+  <p class="note">Labor burden: payroll taxes, workers comp and other costs that scale with wages. If you pay yourself or use subcontractors, enter what the work really costs you. Starting numbers are an example.</p>
+</section>
+<section class="card" aria-live="polite" aria-label="Results"><div id="out"></div></section>
+</div>
+<section class="card optin" id="kit">
+<h2>Free: Contract Rescue Kit</h2>
+<p>Fill-in-the-blank letters for the moment a job is not paying: a price increase letter, a scope and hours adjustment letter, and a counter-offer script, plus a one-page bid check.</p>
+<form id="optin-form" novalidate>
+  <label for="em">Email</label>
+  <input id="em" name="email" type="email" autocomplete="email" required placeholder="you@yourbusiness.com">
+  <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+  <label class="check"><input type="checkbox" name="consent" required> Email me the kit and occasional pricing tips. I can unsubscribe any time. <a href="../privacy/">What is stored</a></label>
+  <button type="submit">Send me the kit</button>
+  <p class="msg" id="optin-msg" role="status"></p>
+</form>
+</section>
+<section class="card"><h2>Common questions</h2><h3>Why add extra hours?</h3><p>Setup, hose runs, protecting plants, rinsing and cleanup are real labor that square-foot rates leave out.</p><h3>What about surface type?</h3><p>Use a production rate for the surface you are washing. Concrete, wood and siding clean at different speeds; track your own.</p><h3>Should I price by area or by hour?</h3><p>Whichever you use, run the job here to see if it covers cost and margin. A flat price that ignores hours is the usual way jobs lose money.</p></section>
+<section class="card">
+<h2>Was this useful?</h2>
+<form id="fb-form" novalidate>
+  <label for="fb">What would make this more useful, or what is missing? (No personal details needed.)</label>
+  <textarea id="fb" name="message" rows="3" maxlength="1500"></textarea>
+  <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+  <button type="submit" class="secondary">Send feedback</button>
+  <p class="msg" id="fb-msg" role="status"></p>
+</form></section>
+<p class="note">Want the spreadsheet version? <a id="dl" href="../contract-profit-check.xlsx" download>Download the free workbook</a> (single contract, live formulas).</p>
+</main>
+<footer><div class="wrap">
+<p>Estimates only. Not accounting, legal or tax advice. Starting numbers on every calculator are examples, not market data.</p>
+<p><a href="../privacy/">Privacy</a> · <a href="../commercial-cleaning/">Commercial cleaning</a> · <a href="../house-cleaning/">House cleaning</a> · <a href="../pressure-washing/">Pressure washing</a> · <a href="../lawn-care/">Lawn care</a> · <a href="../window-cleaning/">Window cleaning</a></p>
+</div></footer>
+<script>window.CFG={"slug":"pressure-washing","mode":"job","period":"per job","defaults":{"sqft":1500,"sqftPerHour":350,"extraHoursPerVisit":1,"wage":20,"burdenPct":0.12,"suppliesMonthly":25,"equipmentMonthly":20,"travelPerVisit":18,"overheadPct":0.1,"targetMarginPct":0.25,"quotedMonthly":350},"api":"https://profit-check-api.maramreddyajit.workers.dev"};</script>
+<script src="../assets/engine.js"></script><script src="../assets/app.js"></script>
+</body></html>

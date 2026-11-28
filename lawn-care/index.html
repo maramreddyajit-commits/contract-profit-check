@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lawn care pricing calculator: is the monthly price profitable?</title>
+<meta name="description" content="Free calculator for lawn mowing and maintenance prices. See break-even, target price and the effect of slower visits.">
+<link rel="canonical" href="https://maramreddyajit-commits.github.io/contract-profit-check/lawn-care/">
+<meta property="og:title" content="Lawn care pricing calculator: is the monthly price profitable?"><meta property="og:description" content="Free calculator for lawn mowing and maintenance prices. See break-even, target price and the effect of slower visits."><meta property="og:type" content="website">
+<link rel="stylesheet" href="../assets/style.css">
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"Lawn care contract profit calculator","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"url":"https://maramreddyajit-commits.github.io/contract-profit-check/lawn-care/"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I handle seasons?","acceptedAnswer":{"@type":"Answer","text":"Run the calculator for the busy-season visit rate and again for the slow season, then compare against what you charge."}},{"@type":"Question","name":"What belongs in equipment?","acceptedAnswer":{"@type":"Answer","text":"Blade and trimmer line wear, repairs, mower depreciation and your share of the truck and trailer."}},{"@type":"Question","name":"Why include travel per visit?","acceptedAnswer":{"@type":"Answer","text":"Drive time and fuel to each stop can eat the margin on small properties."}}]}]</script>
+</head><body>
+<header class="top"><div class="wrap"><a class="brand" href="../">Job Profit Check</a><span class="tag">Free pricing calculators for service businesses</span></div></header>
+
+<main class="wrap">
+<h1>Lawn care contract profit calculator</h1>
+<p class="sub">Enter a property and your costs to see if a monthly maintenance price pays for labor, fuel, equipment and overhead. Nothing you type is sent anywhere.</p>
+<div class="grid">
+<section class="card" aria-label="Inputs">
+  <h2>The contract</h2>
+  <div class="row2"><div><label for="sqft">Lawn area (sq ft)</label><input id="sqft" type="number" inputmode="decimal" min="0" step="any" ></div><div><label for="visitsPerWeek">Visits per week</label><input id="visitsPerWeek" type="number" inputmode="decimal" min="0" step="any" ></div></div>
+  <div class="row2"><div><label for="sqftPerHour">Sq ft mowed and edged per labor hour</label><input id="sqftPerHour" type="number" inputmode="decimal" min="0" step="any" ></div><div><label for="extraHoursPerVisit">Extra hours per visit</label><input id="extraHoursPerVisit" type="number" inputmode="decimal" min="0" step="any" ></div></div>
+  <h2 class="gap">Your costs</h2>
+  <div class="row2"><div><label for="wage">Labor wage ($/hour)</label><input id="wage" type="number" inputmode="decimal" min="0" step="any" ></div><div><label for="burdenPct">Labor burden (%)</label><input id="burdenPct" type="number" inputmode="decimal" min="0" step="any" ></div></div>
+  <div class="row2"><div><label for="suppliesMonthly">Fuel and supplies ($/month)</label><input id="suppliesMonthly" type="number" inputmode="decimal" min="0" step="any" ></div><div><label for="equipmentMonthly">Equipment wear and vehicle ($/month)</label><input id="equipmentMonthly" type="number" inputmode="decimal" min="0" step="any" ></div></div>
+  <div class="row2"><div><label for="travelPerVisit">Travel cost per visit ($)</label><input id="travelPerVisit" type="number" inputmode="decimal" min="0" step="any" ></div><div><label for="overheadPct">Overhead (% of revenue)</label><input id="overheadPct" type="number" inputmode="decimal" min="0" step="any" ></div></div>
+  <h2 class="gap">The price</h2>
+  <div class="row2"><div><label for="quotedMonthly">Monthly price ($/month)</label><input id="quotedMonthly" type="number" inputmode="decimal" min="0" step="any" ></div><div><label for="targetMarginPct">Profit margin you need (%)</label><input id="targetMarginPct" type="number" inputmode="decimal" min="0" step="any" ></div></div>
+  <p class="note">Labor burden: payroll taxes, workers comp and other costs that scale with wages. If you pay yourself or use subcontractors, enter what the work really costs you. Starting numbers are an example.</p>
+</section>
+<section class="card" aria-live="polite" aria-label="Results"><div id="out"></div></section>
+</div>
+<section class="card optin" id="kit">
+<h2>Free: Contract Rescue Kit</h2>
+<p>Fill-in-the-blank letters for the moment a job is not paying: a price increase letter, a scope and hours adjustment letter, and a counter-offer script, plus a one-page bid check.</p>
+<form id="optin-form" novalidate>
+  <label for="em">Email</label>
+  <input id="em" name="email" type="email" autocomplete="email" required placeholder="you@yourbusiness.com">
+  <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+  <label class="check"><input type="checkbox" name="consent" required> Email me the kit and occasional pricing tips. I can unsubscribe any time. <a href="../privacy/">What is stored</a></label>
+  <button type="submit">Send me the kit</button>
+  <p class="msg" id="optin-msg" role="status"></p>
+</form>
+</section>
+<section class="card"><h2>Common questions</h2><h3>How do I handle seasons?</h3><p>Run the calculator for the busy-season visit rate and again for the slow season, then compare against what you charge.</p><h3>What belongs in equipment?</h3><p>Blade and trimmer line wear, repairs, mower depreciation and your share of the truck and trailer.</p><h3>Why include travel per visit?</h3><p>Drive time and fuel to each stop can eat the margin on small properties.</p></section>
+<section class="card">
+<h2>Was this useful?</h2>
+<form id="fb-form" novalidate>
+  <label for="fb">What would make this more useful, or what is missing? (No personal details needed.)</label>
+  <textarea id="fb" name="message" rows="3" maxlength="1500"></textarea>
+  <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+  <button type="submit" class="secondary">Send feedback</button>
+  <p class="msg" id="fb-msg" role="status"></p>
+</form></section>
+<p class="note">Want the spreadsheet version? <a id="dl" href="../contract-profit-check.xlsx" download>Download the free workbook</a> (single contract, live formulas).</p>
+</main>
+<footer><div class="wrap">
+<p>Estimates only. Not accounting, legal or tax advice. Starting numbers on every calculator are examples, not market data.</p>
+<p><a href="../privacy/">Privacy</a> · <a href="../commercial-cleaning/">Commercial cleaning</a> · <a href="../house-cleaning/">House cleaning</a> · <a href="../pressure-washing/">Pressure washing</a> · <a href="../lawn-care/">Lawn care</a> · <a href="../window-cleaning/">Window cleaning</a></p>
+</div></footer>
+<script>window.CFG={"slug":"lawn-care","mode":"week","period":"per month","defaults":{"sqft":20000,"visitsPerWeek":1,"sqftPerHour":6000,"extraHoursPerVisit":0.25,"wage":18,"burdenPct":0.15,"suppliesMonthly":40,"equipmentMonthly":80,"travelPerVisit":5,"overheadPct":0.1,"targetMarginPct":0.2,"quotedMonthly":600},"api":"https://profit-check-api.maramreddyajit.workers.dev"};</script>
+<script src="../assets/engine.js"></script><script src="../assets/app.js"></script>
+</body></html>

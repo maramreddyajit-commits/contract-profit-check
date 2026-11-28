@@ -1,239 +1,45 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Contract Profit Check</title>
-<meta name="description" content="Free calculator: enter a commercial cleaning contract's size, labor and costs to see break-even price, profit, and whether to take it.">
-<style>
-:root{--bg:#f6f7f9;--card:#fff;--ink:#16202a;--mute:#5b6773;--line:#dde2e8;--accent:#0b6b5c;--good:#0b7a4b;--warn:#a65d00;--bad:#b3261e;--goodbg:#e3f4ea;--warnbg:#fdf0da;--badbg:#fbe4e2}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1418;--card:#171e24;--ink:#e8edf2;--mute:#9aa7b3;--line:#2a343d;--accent:#43c1ab;--good:#5fd39a;--warn:#f0b35a;--bad:#ff8a80;--goodbg:#12301f;--warnbg:#3a2a0e;--badbg:#3d1a18}}
-:root[data-theme="dark"]{--bg:#0f1418;--card:#171e24;--ink:#e8edf2;--mute:#9aa7b3;--line:#2a343d;--accent:#43c1ab;--good:#5fd39a;--warn:#f0b35a;--bad:#ff8a80;--goodbg:#12301f;--warnbg:#3a2a0e;--badbg:#3d1a18}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
-main{max-width:1020px;margin:0 auto;padding:24px 16px 48px}
-h1{font-size:1.5rem;margin:0 0 4px}
-.sub{color:var(--mute);margin:0 0 20px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-@media (max-width:760px){.grid{grid-template-columns:1fr}}
-.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
-.card h2{font-size:1rem;margin:0 0 12px}
-label{display:block;font-size:.85rem;color:var(--mute);margin-top:10px}
-input{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit}
-input:focus{outline:2px solid var(--accent);outline-offset:1px}
-.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.verdict{border-radius:10px;padding:14px;margin-bottom:14px;font-weight:600}
-.verdict small{display:block;font-weight:400;margin-top:4px}
-.v-GOOD{background:var(--goodbg);color:var(--good)}.v-NEGOTIATE{background:var(--warnbg);color:var(--warn)}.v-PASS{background:var(--badbg);color:var(--bad)}
-table{width:100%;border-collapse:collapse;font-size:.95rem}
-td,th{padding:6px 0;border-bottom:1px solid var(--line);text-align:left}
-td:last-child,th:last-child{text-align:right;font-variant-numeric:tabular-nums}
-.err{color:var(--bad);font-size:.9rem}
-.note{color:var(--mute);font-size:.82rem;margin-top:16px}
-.cta{display:none;margin-top:14px}
-.cta a{color:var(--accent);font-weight:600}
-</style>
-</head>
-<body>
-<main>
-<h1>Contract Profit Check</h1>
-<p class="sub">Is this cleaning contract worth taking at this price? Enter your numbers; nothing leaves your browser.</p>
-<div class="grid">
-  <section class="card" aria-label="Inputs">
-    <h2>The contract</h2>
-    <div class="row2">
-      <div><label for="sqft">Building size (sq ft)</label><input id="sqft" type="number" inputmode="decimal" min="0" step="any"></div>
-      <div><label for="visitsPerWeek">Visits per week</label><input id="visitsPerWeek" type="number" inputmode="decimal" min="0" step="any"></div>
-    </div>
-    <div class="row2">
-      <div><label for="sqftPerHour">Sq ft cleaned per labor hour</label><input id="sqftPerHour" type="number" inputmode="decimal" min="0" step="any"></div>
-      <div><label for="extraHoursPerVisit">Extra hours per visit</label><input id="extraHoursPerVisit" type="number" inputmode="decimal" min="0" step="any"></div>
-    </div>
-    <h2 style="margin-top:18px">Your costs</h2>
-    <div class="row2">
-      <div><label for="wage">Cleaner wage ($/hour)</label><input id="wage" type="number" inputmode="decimal" min="0" step="any"></div>
-      <div><label for="burdenPct">Labor burden (%)</label><input id="burdenPct" type="number" inputmode="decimal" min="0" step="any"></div>
-    </div>
-    <div class="row2">
-      <div><label for="suppliesMonthly">Supplies ($/month)</label><input id="suppliesMonthly" type="number" inputmode="decimal" min="0" step="any"></div>
-      <div><label for="equipmentMonthly">Equipment, vehicle ($/month)</label><input id="equipmentMonthly" type="number" inputmode="decimal" min="0" step="any"></div>
-    </div>
-    <div class="row2">
-      <div><label for="travelPerVisit">Travel cost per visit ($)</label><input id="travelPerVisit" type="number" inputmode="decimal" min="0" step="any"></div>
-      <div><label for="overheadPct">Overhead (% of revenue)</label><input id="overheadPct" type="number" inputmode="decimal" min="0" step="any"></div>
-    </div>
-    <h2 style="margin-top:18px">The price</h2>
-    <div class="row2">
-      <div><label for="quotedMonthly">Price you'd bid ($/month)</label><input id="quotedMonthly" type="number" inputmode="decimal" min="0" step="any"></div>
-      <div><label for="targetMarginPct">Profit margin you need (%)</label><input id="targetMarginPct" type="number" inputmode="decimal" min="0" step="any"></div>
-    </div>
-    <p class="note">Starting numbers are an example, not market data. Replace every field with your own, ideally from tracked hours on similar jobs.</p>
-  </section>
-  <section class="card" aria-live="polite" aria-label="Results">
-    <div id="out"></div>
-    <p class="cta" id="cta"></p>
-    <p class="note">Estimates only. Not accounting, legal or tax advice. The result is only as good as the production rate and cost inputs you enter.</p>
-  </section>
-</div>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Job Profit Check: free pricing calculators for service businesses</title>
+<meta name="description" content="Free calculators that show whether a cleaning, pressure washing, lawn care or window cleaning job makes money after labor, supplies, travel and overhead.">
+<link rel="canonical" href="https://maramreddyajit-commits.github.io/contract-profit-check/">
+<meta property="og:title" content="Job Profit Check: free pricing calculators for service businesses"><meta property="og:description" content="Free calculators that show whether a cleaning, pressure washing, lawn care or window cleaning job makes money after labor, supplies, travel and overhead."><meta property="og:type" content="website">
+<link rel="stylesheet" href="assets/style.css">
+
+</head><body>
+<header class="top"><div class="wrap"><a class="brand" href="./">Job Profit Check</a><span class="tag">Free pricing calculators for service businesses</span></div></header>
+
+<main class="wrap">
+<h1>Is this job worth taking at this price?</h1>
+<p class="sub">Free calculators for service businesses. Enter your own labor and costs; see break-even, your target price and what slower work does to profit. Runs in your browser.</p>
+<div class="tiles"><a class="tile" href="commercial-cleaning/"><strong>Commercial cleaning</strong><span>Enter a contract's size, visits and your costs.</span></a><a class="tile" href="house-cleaning/"><strong>House cleaning</strong><span>Work out whether a price per visit makes money after labor, supplies, travel and overhead.</span></a><a class="tile" href="pressure-washing/"><strong>Pressure washing</strong><span>Check a quote against your real costs before you send it: labor, chemicals, machine wear, travel and overhead.</span></a><a class="tile" href="lawn-care/"><strong>Lawn care</strong><span>Enter a property and your costs to see if a monthly maintenance price pays for labor, fuel, equipment and overhead.</span></a><a class="tile" href="window-cleaning/"><strong>Window cleaning</strong><span>Count the windows, enter your pace and costs, and see whether the quote leaves you any profit.</span></a></div>
+<section class="card optin" id="kit">
+<h2>Free: Contract Rescue Kit</h2>
+<p>Fill-in-the-blank letters for the moment a job is not paying: a price increase letter, a scope and hours adjustment letter, and a counter-offer script, plus a one-page bid check.</p>
+<form id="optin-form" novalidate>
+  <label for="em">Email</label>
+  <input id="em" name="email" type="email" autocomplete="email" required placeholder="you@yourbusiness.com">
+  <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+  <label class="check"><input type="checkbox" name="consent" required> Email me the kit and occasional pricing tips. I can unsubscribe any time. <a href="privacy/">What is stored</a></label>
+  <button type="submit">Send me the kit</button>
+  <p class="msg" id="optin-msg" role="status"></p>
+</form>
+</section>
+<section class="card">
+<h2>Was this useful?</h2>
+<form id="fb-form" novalidate>
+  <label for="fb">What would make this more useful, or what is missing? (No personal details needed.)</label>
+  <textarea id="fb" name="message" rows="3" maxlength="1500"></textarea>
+  <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+  <button type="submit" class="secondary">Send feedback</button>
+  <p class="msg" id="fb-msg" role="status"></p>
+</form></section>
 </main>
-<script>
-// Single-contract profitability engine for commercial cleaning bids.
-// Pure functions, no dependencies. Percentages are fractions (0.25 = 25%).
-// All money is per month unless a name says otherwise.
-
-const WEEKS_PER_MONTH = 52 / 12;
-
-const DEFAULTS = Object.freeze({
-  sqft: 10000,
-  visitsPerWeek: 5,
-  sqftPerHour: 2500,        // production rate: sq ft cleaned per labor hour
-  extraHoursPerVisit: 0.5,  // setup, restocking, walkthrough, not covered by the rate
-  wage: 16,                 // $/hour paid to the cleaner
-  burdenPct: 0.25,          // payroll taxes, workers comp, other labor-linked cost
-  suppliesMonthly: 150,
-  equipmentMonthly: 100,    // equipment wear, replacement, vehicle share
-  travelPerVisit: 8,        // fuel and vehicle cost per visit
-  overheadPct: 0.10,        // insurance, admin, software, as a share of revenue
-  targetMarginPct: 0.15,    // net profit you need on this contract
-  quotedMonthly: 3000,      // the price you plan to bid or have been offered
-  overruns: [0.10, 0.20],   // "what if the crew needs this much more time"
-});
-
-function num(v, name, errors, { min = -Infinity, positive = false } = {}) {
-  const n = Number(v);
-  if (!Number.isFinite(n)) { errors.push(`${name} must be a number`); return NaN; }
-  if (positive && n <= 0) errors.push(`${name} must be greater than 0`);
-  else if (n < min) errors.push(`${name} must be at least ${min}`);
-  return n;
-}
-
-function evaluate(input = {}) {
-  const i = { ...DEFAULTS, ...input };
-  const errors = [];
-  const sqft = num(i.sqft, 'Square feet', errors, { positive: true });
-  const visitsPerWeek = num(i.visitsPerWeek, 'Visits per week', errors, { positive: true });
-  const sqftPerHour = num(i.sqftPerHour, 'Production rate', errors, { positive: true });
-  const extra = num(i.extraHoursPerVisit, 'Extra hours per visit', errors, { min: 0 });
-  const wage = num(i.wage, 'Wage', errors, { min: 0 });
-  const burden = num(i.burdenPct, 'Labor burden', errors, { min: 0 });
-  const supplies = num(i.suppliesMonthly, 'Supplies', errors, { min: 0 });
-  const equipment = num(i.equipmentMonthly, 'Equipment', errors, { min: 0 });
-  const travel = num(i.travelPerVisit, 'Travel per visit', errors, { min: 0 });
-  const overheadPct = num(i.overheadPct, 'Overhead', errors, { min: 0 });
-  const targetMargin = num(i.targetMarginPct, 'Target margin', errors, { min: 0 });
-  const quoted = num(i.quotedMonthly, 'Quoted price', errors, { min: 0 });
-  if (overheadPct + targetMargin >= 1) errors.push('Overhead plus target margin must be under 100%');
-  if (errors.length) return { ok: false, errors };
-
-  const visitsPerMonth = visitsPerWeek * WEEKS_PER_MONTH;
-  const hoursPerVisit = sqft / sqftPerHour + extra;
-  const laborHours = hoursPerVisit * visitsPerMonth;
-  const loadedWage = wage * (1 + burden);
-  const travelCost = travel * visitsPerMonth;
-
-  const costAt = (hours) => hours * loadedWage + supplies + equipment + travelCost;
-  const directCost = costAt(laborHours);
-
-  const breakEven = directCost / (1 - overheadPct);
-  const targetPrice = directCost / (1 - overheadPct - targetMargin);
-
-  const outcomeAt = (hours) => {
-    const direct = costAt(hours);
-    const overhead = overheadPct * quoted;
-    const profit = quoted - direct - overhead;
-    return {
-      laborHours: hours,
-      directCost: direct,
-      profit,
-      margin: quoted > 0 ? profit / quoted : NaN,
-    };
-  };
-
-  const base = outcomeAt(laborHours);
-  // Compare at cent precision so float noise at exactly break-even or target
-  // does not flip the verdict.
-  const cents = Math.round(base.profit * 100);
-  const targetCents = Math.round(targetMargin * quoted * 100);
-  const verdict = quoted === 0 ? 'PASS'
-    : cents >= targetCents ? 'GOOD'
-    : cents >= 0 ? 'NEGOTIATE' : 'PASS';
-
-  return {
-    ok: true,
-    errors: [],
-    visitsPerMonth,
-    hoursPerVisit,
-    laborHours,
-    loadedWage,
-    laborCost: laborHours * loadedWage,
-    suppliesCost: supplies,
-    equipmentCost: equipment,
-    travelCost,
-    directCost,
-    overheadAtQuote: overheadPct * quoted,
-    breakEven,
-    targetPrice,
-    profit: base.profit,
-    margin: base.margin,
-    revenuePerLaborHour: quoted / laborHours,
-    profitPerLaborHour: base.profit / laborHours,
-    pricePerSqft: quoted / sqft,
-    verdict,
-    // How much less than the target price you are quoting (positive = under target price).
-    gapToTarget: targetPrice - quoted,
-    sensitivity: (i.overruns || []).map((o) => ({ overrun: o, ...outcomeAt(laborHours * (1 + o)) })),
-  };
-}
-
-const CTA_URL = ""; // set only after the owner approves a destination
-const CTA_TEXT = "";
-const pctFields = ["burdenPct","overheadPct","targetMarginPct"];
-const fields = ["sqft","visitsPerWeek","sqftPerHour","extraHoursPerVisit","wage","burdenPct","suppliesMonthly","equipmentMonthly","travelPerVisit","overheadPct","targetMarginPct","quotedMonthly"];
-for (const f of fields) {
-  const v = DEFAULTS[f];
-  document.getElementById(f).value = pctFields.includes(f) ? +(v*100).toFixed(2) : v;
-}
-const $ = (n) => (n<0?"-":"") + "$" + Math.abs(n).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});
-const P = (n) => (n*100).toFixed(1) + "%";
-const MSG = {
-  GOOD: ["Take it", "Meets your margin target at this price."],
-  NEGOTIATE: ["Negotiate", "Profitable on paper but below your target margin."],
-  PASS: ["Pass at this price", "You lose money after overhead, or the price is zero."],
-};
-function read() {
-  const o = {};
-  for (const f of fields) {
-    const raw = document.getElementById(f).value;
-    o[f] = raw === "" ? NaN : (pctFields.includes(f) ? Number(raw)/100 : Number(raw));
-  }
-  return o;
-}
-function render() {
-  const r = evaluate(read());
-  const out = document.getElementById("out");
-  if (!r.ok) { out.innerHTML = '<p class="err">' + r.errors.map(e=>e.replace(/</g,"&lt;")).join("<br>") + '</p>'; return; }
-  const [t, d] = MSG[r.verdict];
-  const rows = [
-    ["Labor hours per month", r.laborHours.toFixed(1)],
-    ["Labor cost (with burden)", $(r.laborCost)],
-    ["Supplies, equipment, travel", $(r.suppliesCost + r.equipmentCost + r.travelCost)],
-    ["Direct cost", $(r.directCost)],
-    ["Overhead at your price", $(r.overheadAtQuote)],
-    ["Profit per month", $(r.profit)],
-    ["Net margin", P(r.margin)],
-    ["Revenue per labor hour", $(r.revenuePerLaborHour)],
-    ["Break-even price (walk-away floor)", $(r.breakEven)],
-    ["Price that hits your target margin", $(r.targetPrice)],
-  ];
-  const sens = r.sensitivity.map(s => `<tr><td>If crew takes ${(s.overrun*100).toFixed(0)}% more hours</td><td>${$(s.profit)} (${P(s.margin)})</td></tr>`).join("");
-  out.innerHTML = `<div class="verdict v-${r.verdict}">${t}<small>${d}</small></div>
-    <table><tbody>${rows.map(([a,b])=>`<tr><td>${a}</td><td>${b}</td></tr>`).join("")}</tbody></table>
-    <h2 style="margin-top:16px">Hours creep</h2>
-    <table><tbody>${sens}</tbody></table>`;
-}
-document.querySelectorAll("input").forEach(i => i.addEventListener("input", render));
-if (CTA_URL) { const c = document.getElementById("cta"); c.style.display="block"; const a = document.createElement("a"); a.href = CTA_URL; a.textContent = CTA_TEXT; c.appendChild(a); }
-render();
-</script>
-</body>
-</html>
+<footer><div class="wrap">
+<p>Estimates only. Not accounting, legal or tax advice. Starting numbers on every calculator are examples, not market data.</p>
+<p><a href="privacy/">Privacy</a> · <a href="commercial-cleaning/">Commercial cleaning</a> · <a href="house-cleaning/">House cleaning</a> · <a href="pressure-washing/">Pressure washing</a> · <a href="lawn-care/">Lawn care</a> · <a href="window-cleaning/">Window cleaning</a></p>
+</div></footer>
+<script>window.CFG={"slug":"hub","hub":true,"api":"https://profit-check-api.maramreddyajit.workers.dev"};</script>
+<script src="assets/app.js"></script>
+</body></html>

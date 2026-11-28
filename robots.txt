@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /contract-profit-check/rescue-kit/
+Sitemap: https://maramreddyajit-commits.github.io/contract-profit-check/sitemap.xml

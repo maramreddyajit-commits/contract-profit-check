@@ -1,8 +1,3 @@
-# Contract Profit Check
+# Job Profit Check
 
-Free calculator for commercial cleaning contract bids. Runs in the browser; nothing is sent anywhere.
-
-- `index.html`: the calculator
-- `contract-profit-check.xlsx`: spreadsheet version with live formulas
-
-Estimates only. Starting numbers are an example, not market data.
+Free pricing calculators for service businesses. Static site generated from the engine in the source project.
